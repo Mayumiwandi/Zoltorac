@@ -24,6 +24,8 @@ jobs:
     
     
     - name: 🔄 Update Proxy Status
+      env:
+        input_file: './scan/rawProxyList.txt'
       run: |
         python3 ./scan/scan-proxy.py
 

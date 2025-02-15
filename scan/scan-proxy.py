@@ -37,7 +37,7 @@ def Cek_ip_port(line, save_path):
 
 def Save_to_file(filepath, data):
     """Simpan hasil ke dalam file dengan path yang sesuai"""
-    with open(filepath, 'a') as f:
+    with open(filepath, 'w') as f:
         f.write(data + '\n')
 
 def Read_ip_port(filename, max_workers=100):

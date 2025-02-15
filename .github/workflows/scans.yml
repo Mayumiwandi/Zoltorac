@@ -13,57 +13,23 @@ jobs:
     - name: 📂 Checkout Repository
       uses: actions/checkout@v3
       with:
-        fetch-depth: 0  # Agar bisa melakukan rebase dengan baik
-
+       token: ${{ secrets.GIT_TOKEN }}
     
     - name: 🐍 Set Up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.x'
-
-    
     
     - name: 🔄 Update Proxy Status
-      env:
-        input_file: './scan/rawProxyList.txt'
       run: |
         python3 ./scan/scan-proxy.py
 
     #Commit dan push perubahan jika ada
     - name: 📤 Commit and Push Changes
+      if: ${{ success() }}
       run: |
-        git config --local user.name "github-actions[bot]"
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-
-        # Simpan perubahan sementara sebelum pull
-        git stash
-        
-        # Tarik perubahan terbaru untuk menghindari konflik
-        git pull origin main --rebase
-
-        # Ambil kembali perubahan yang telah disimpan
-        git stash pop || echo "⚠️ Tidak ada perubahan yang di-stash."
-
-        # Tambahkan file ke staging area jika ada perubahan
-        if [ -f scan/active.txt ]; then
-          git add scan/active.txt && echo "✅ scan/active.txt berhasil ditambahkan ke staging."
-        else
-          echo "⚠️ scan/active.txt tidak ditemukan."
-        fi
-
-        if [ -f scan/dead.txt ]; then
-          git add scan/dead.txt && echo "✅ scan/dead.txt berhasil ditambahkan ke staging."
-        else
-          echo "⚠️ scan/dead.txt tidak ditemukan."
-        fi
-
-        # Commit hanya jika ada perubahan
-        if git diff --quiet HEAD --; then
-          echo "✅ Tidak ada perubahan yang perlu di-commit."
-        else
-          git commit -m "♻️ Update proxy IP status" && echo "✅ Perubahan berhasil di-commit."
-
-          # Push ke repository
-          git push https://github.com/${{ github.repository }}.git HEAD:main
-          echo "🚀 Perubahan berhasil di-push ke repository."
-        fi
+        git config --global user.name "Github Actions"
+        git config --global user.email "actions@github.com"
+        git add .
+        git commit -m "Update proxyip"
+        git push origin main --force

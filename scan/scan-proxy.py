@@ -26,7 +26,7 @@ def Cek_ip_port(line, save_path):
         country = parts[2] if len(parts) > 2 else "Unknown"
         organization = parts[3] if len(parts) > 3 else "Unknown"
         
-        result = f"{ip_address}, {port_number}, {country}, {organization}" 
+        result = f"{ip_address},{port_number},{country},{organization}" 
         
         if Cek_proxy(ip_address, port_number):
             Save_to_file(os.path.join(save_path, "active.txt"), result)

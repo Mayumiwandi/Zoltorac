@@ -3,6 +3,8 @@ name: Proxy Scaner
 on:
   # Workflow dapat dijalankan secara manual
   workflow_dispatch:
+  schedule:
+    - cron: "0 */2 * * *"
 
 jobs:
   update-proxies:

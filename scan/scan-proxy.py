@@ -1,19 +1,22 @@
 import socket
+import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
+
+# File input yang berisi daftar IP dan port
 file_input = "scan/rawProxyList.txt"
 
 def Cek_proxy(ip, port, timeout=3):
-    """dengan module socket kita memeriksa koneksi IP dan PORT"""
+    """Memeriksa koneksi IP dan PORT menggunakan socket"""
     try:
         with socket.create_connection((ip, port), timeout=timeout):
             return True
-    except(socket.timeout, socket.error):
+    except (socket.timeout, socket.error):
         return False
-    
-def Cek_ip_port(line):
+
+def Cek_ip_port(line, save_path):
     parts = line.strip().split(',')
-    if len (parts)>= 2:
-        ip_addres = parts[0]
+    if len(parts) >= 2:
+        ip_address = parts[0]
         try:
             port_number = int(parts[1])
         except ValueError:
@@ -23,34 +26,37 @@ def Cek_ip_port(line):
         country = parts[2] if len(parts) > 2 else "Unknown"
         organization = parts[3] if len(parts) > 3 else "Unknown"
         
-        result = f"{ip_addres}, {port_number}, {country}, {organization}" 
+        result = f"{ip_address}, {port_number}, {country}, {organization}" 
         
-        if Cek_proxy(ip_addres, port_number):
-            Save_to_file('active.txt', result)
+        if Cek_proxy(ip_address, port_number):
+            Save_to_file(os.path.join(save_path, "active.txt"), result)
             print(f"[AKTIF] {result} ")
-            
         else:
-            Save_to_file('dead.txt', result)
-            print(f"[TIDAK AKTIF],{result}")
-            
-def Save_to_file(filename, data):
-    with open(filename, 'a') as f:
-        f.write(data +'\n')
-        
-def Read_ip_port(filename, max_workers=50): # max_workers harus jangan terlalu banyak
+            Save_to_file(os.path.join(save_path, "dead.txt"), result)
+            print(f"[TIDAK AKTIF] {result}")
+
+def Save_to_file(filepath, data):
+    """Simpan hasil ke dalam file dengan path yang sesuai"""
+    with open(filepath, 'a') as f:
+        f.write(data + '\n')
+
+def Read_ip_port(filename, max_workers=100):
+    """Baca IP dan port dari file, lalu cek statusnya dengan thread pool"""
+    save_path = os.path.dirname(filename)  # Ambil folder dari file_input
+
     try:
         with open(filename, 'r') as file:
             lines = file.readlines()
-            
+
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            futures =[executor.submit(Cek_ip_port, line) for line in lines]
+            futures = [executor.submit(Cek_ip_port, line, save_path) for line in lines]
             for future in as_completed(futures):
-                future.result()
-                #memastikan setiap tugas selesai
-                
+                future.result()  # Pastikan setiap tugas selesai
+
     except FileNotFoundError:
-        print(f"File '{filename}' tidak di temukan.")
+        print(f"File '{filename}' tidak ditemukan.")
     except ValueError:
-        print(f"Format data salah. Pastikan Ip dan Port dipisah dengan koma.")
-        
+        print("Format data salah. Pastikan IP dan port dipisah dengan koma.")
+
+# Jalankan pengecekan proxy
 Read_ip_port(file_input)

@@ -1,6 +1,6 @@
 import socket
 from concurrent.futures import ThreadPoolExecutor, as_completed
-file_input = "rawProxyList.txt"
+file_input = "./rawProxyList.txt"
 
 def Cek_proxy(ip, port, timeout=3):
     """dengan module socket kita memeriksa koneksi IP dan PORT"""

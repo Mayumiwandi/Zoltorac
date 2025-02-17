@@ -91,4 +91,6 @@ async def process_proxies(filename, max_workers=300):
 
 # Jalankan pengecekan proxy dengan await
 
-await process_proxies(file_input)
+
+if __name__ == "__main__":
+    asyncio.run(process_proxies(file_input))  # ✅ Ini memastikan async berjalan dengan benar

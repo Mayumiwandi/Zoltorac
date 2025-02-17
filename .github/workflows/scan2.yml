@@ -30,7 +30,7 @@ jobs:
     
     - name: 🔄 Update Proxy Status
       run: |
-        python3 ./scan/scan-proxy.py
+        python3 ./autoscan/scanproxy.py
 
     #Commit dan push perubahan jika ada
     - name: 📤 Commit and Push Changes

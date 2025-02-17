@@ -1,4 +1,4 @@
-name: Proxy Scaner
+name: Proxy Scaner httpx
 
 on:
   # Workflow dapat dijalankan secara manual

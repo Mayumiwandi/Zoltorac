@@ -4,9 +4,9 @@ import httpx
 from aiofiles import open as aio_open
 
 # File input yang berisi daftar IP dan port
-file_input = "/content/rawProxyList.txt"
-active_file = "/content/active.txt"
-dead_file = "/content/dead.txt"
+file_input = "autoscan/rawProxyList.txt"
+active_file = "autoscan/active.txt"
+dead_file = "autoscan/dead.txt"
 
 # Hapus isi file setiap kali script dijalankan ulang
 async def clear_file(filepath):

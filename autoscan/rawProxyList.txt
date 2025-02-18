@@ -1,3 +1,5 @@
+103.6.207.108,8080,ID,PT. Pusat Media Indonesia
+103.63.101.10,443,ID,PT. Newton Cipta Informatika
 185.169.107.233,443,AE,Digital City FZE
 185.169.107.99,443,AE,Digital City FZE
 195.246.110.155,8443,AE,365partners
@@ -12508,4 +12510,4 @@
 152.32.255.24,587,VN,UCLOUD INFORMATION TECHNOLOGY (HK) LIMITED
 103.15.90.134,49678,VN,Vietnam Posts And Telecommunications Group
 38.54.30.6,443,VN,Kaopu Cloud HK Limited
-4.221.60.243,2053,ZA,Microsoft Corporation
+4.221.60.243,2053,ZA,Microsoft Corporation

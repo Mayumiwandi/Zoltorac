@@ -1,5 +1,5 @@
-103.6.207.108,8080,ID,PT. Pusat Media Indonesia
-103.63.101.10,443,ID,PT. Newton Cipta Informatika
+103.6.207.108,8080,ID,PT Pusat Media Indonesia
+103.63.101.10,443,ID,PT Newton Cipta Informatika
 185.169.107.233,443,AE,Digital City FZE
 185.169.107.99,443,AE,Digital City FZE
 195.246.110.155,8443,AE,365partners

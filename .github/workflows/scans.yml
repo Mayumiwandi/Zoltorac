@@ -1,10 +1,10 @@
 name: Proxy Scaner
-
+# ini sudah tidak aktif 
 on:
   # Workflow dapat dijalankan secara manual
   workflow_dispatch:
-  schedule:
-    - cron: "0 */2 * * *"
+  #schedule:
+    #- cron: "0 */2 * * *"
 
 jobs:
   update-proxies:

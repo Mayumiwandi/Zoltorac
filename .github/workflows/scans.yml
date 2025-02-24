@@ -1,4 +1,4 @@
-name: Proxy Scaner
+name: Proxy Scaner Ssl Proxy
 # ini sudah tidak aktif 
 on:
   # Workflow dapat dijalankan secara manual
@@ -24,7 +24,7 @@ jobs:
     
     - name: 🔄 Update Proxy Status
       run: |
-        python3 ./scan/scan-proxy.py
+        python3 ./proxyssl/cekproxy.py
 
     #Commit dan push perubahan jika ada
     - name: 📤 Commit and Push Changes

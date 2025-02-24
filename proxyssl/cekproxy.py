@@ -77,8 +77,8 @@ def process_proxy(proxy_str):
         return f"Error processing proxy {proxy_str.strip()}: {e}"
 
 if __name__ == "__main__":
-    proxy_file = "/content/rawProxyList.txt" # Use the correct path for Colab
-    active_proxy_file = "proxyactive.txt"
+    proxy_file = "proxyssl/rawProxyList.txt" # Use the correct path for Colab
+    active_proxy_file = "proxyssl/proxyactive.txt"
     max_workers = 50
     proxy_results = []
     live_proxies = [] # List to store live proxy results

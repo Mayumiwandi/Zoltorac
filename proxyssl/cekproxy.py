@@ -6,7 +6,7 @@ import concurrent.futures
 
 IP_RESOLVER = "speed.cloudflare.com"
 PATH_RESOLVER = "/meta"
-TIMEOUT_SECONDS = 20  # Define timeout value in seconds
+TIMEOUT_SECONDS = 30  # Define timeout value in seconds
 
 def check(host, path, proxy):
     payload = (

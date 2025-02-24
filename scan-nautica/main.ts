@@ -1,3 +1,4 @@
+// ini adalah sc TS scan proxy milik nautica https://github.com/FoolVPN-ID/Nautica
 import tls from "tls";
 
 interface ProxyStruct {
@@ -23,9 +24,9 @@ interface ProxyTestResult {
 
 let myGeoIpString: any = null;
 
-const KV_PAIR_PROXY_FILE = ".scan-nautica/kvProxyList.json";
-const RAW_PROXY_LIST_FILE = "./rawProxyList.txt";
-const PROXY_LIST_FILE = "./proxyList.txt";
+const KV_PAIR_PROXY_FILE = "scan-nautica/kvProxyList.json";
+const RAW_PROXY_LIST_FILE = "scan-nautica/rawProxyList.txt";
+const PROXY_LIST_FILE = "scan-nautica/proxyList.txt";
 const IP_RESOLVER_DOMAIN = "myipaddr.yumiwandi.workers.dev";
 const IP_RESOLVER_PATH = "/";
 const CONCURRENCY = 99;
